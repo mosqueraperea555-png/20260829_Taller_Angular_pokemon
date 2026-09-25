@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export interface Usuario {
     id : number;
@@ -24,6 +25,7 @@ export interface Usuario {
   templateUrl: './registro-usuario.component.html',
 })
 export class RegistroUsuarioComponent {
+  private router = inject(Router);
   nombre = signal('');
   apellido = signal('');
   tipo_doc = signal('CC');
@@ -55,7 +57,21 @@ export class RegistroUsuarioComponent {
 
     localStorage.setItem(usuarioCreado.id.toString(), JSON.stringify(usuarioCreado));
 
+    const entrenadores = JSON.parse(localStorage.getItem('entrenadores_pokemon') || '[]');
+    const entrenador = {
+      id: usuarioCreado.id,
+      nombreCompleto: usuarioCreado.nombreCompleto,
+      correo: usuarioCreado.correo,
+      fechaRegistro: usuarioCreado.fechaRegistro
+    };
+    localStorage.setItem(
+      'entrenadores_pokemon',
+      JSON.stringify([...entrenadores.filter((item: { id: number }) => item.id !== entrenador.id), entrenador])
+    );
+    localStorage.setItem('entrenador_activo', JSON.stringify(entrenador));
+
     this.ultimoUsuario.set(usuarioCreado);
+    this.router.navigate(['/buscador']);
 
     }
 }

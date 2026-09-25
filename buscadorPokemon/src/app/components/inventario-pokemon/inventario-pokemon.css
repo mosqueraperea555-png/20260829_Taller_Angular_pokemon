@@ -9,10 +9,18 @@
 .item-inventario {
   background: white;
   padding: 1rem;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  border: 1px solid var(--line);
   text-align: center;
   position: relative;
+  box-shadow: 0 10px 24px rgba(20, 43, 58, 0.08);
+}
+
+.item-inventario img {
+  display: block;
+  width: 120px;
+  margin: 0.7rem auto;
+  image-rendering: pixelated;
 }
 
 .posicion-badge {
@@ -38,11 +46,12 @@
 }
 
 .btn-eliminar {
-  background-color: #e57373;
+  background-color: var(--brand);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  padding: 0.45rem 0.65rem;
 }
 
 .sin-datos {

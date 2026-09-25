@@ -14,4 +14,8 @@ import { ResaltarTarjetaDirective } from "../../directives/resaltar-tarjeta.dire
 export class InventarioPokemon {
   pokemonService = inject(PokemonStorageService)
 
+  constructor() {
+    this.pokemonService.cargarDesdeStorage();
+  }
+
 }

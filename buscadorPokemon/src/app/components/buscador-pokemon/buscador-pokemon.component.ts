@@ -1,5 +1,6 @@
 import { Component, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgClass, NgStyle } from"@angular/common"
 import { PokemonStorageService, PokemonTarjeta } from "../../services/pokemon-storage.service"
 import { ResaltarTarjetaDirective } from "../../directives/resaltar-tarjeta.directive"
@@ -15,6 +16,7 @@ import { ResaltarTarjetaDirective } from "../../directives/resaltar-tarjeta.dire
 export class BuscadorPokemonComponent {
 
   pokemonService = inject(PokemonStorageService)
+  private router = inject(Router);
 
   nombrePokemonInput = signal('');
   pokemon = signal<PokemonTarjeta | null>(null);
@@ -55,10 +57,11 @@ guardarEnEquipo(){
   const poke = this.pokemon();
 
   if(poke){
-    this.pokemonService.guardarPokemon(poke);
+    if (!this.pokemonService.guardarPokemon(poke)) return;
     alert(`${poke.name} agregado al almacenamiento exitosamente`);
     this.pokemon.set(null);
     this.nombrePokemonInput.set('');
+    this.router.navigate(['/inventario']);
   }
 
 }

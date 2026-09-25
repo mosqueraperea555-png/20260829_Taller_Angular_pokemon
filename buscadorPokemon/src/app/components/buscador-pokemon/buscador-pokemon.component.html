@@ -1,4 +1,9 @@
 <div>
+  @if (pokemonService.nombreEntrenadorActivo(); as entrenadorActivo) {
+    <p>Entrenador activo: <strong>{{ entrenadorActivo }}</strong></p>
+  } @else {
+    <p class="error">Registra un entrenador antes de capturar Pokémon.</p>
+  }
   <form (ngSubmit)="buscarPokemon()">
     
 
@@ -40,7 +45,7 @@
     </p>
 
     <p>Exp Base: <strong>{{poke.baseExperience}}</strong></p>
-    <button class="btn-guardar" (click)="guardarEnEquipo()">
+    <button class="btn-guardar" (click)="guardarEnEquipo()" [disabled]="!pokemonService.nombreEntrenadorActivo()">
       Almacenar en Invertario
     </button>
 

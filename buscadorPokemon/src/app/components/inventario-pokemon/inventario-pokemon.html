@@ -3,6 +3,11 @@
     <p>Total en almacen: <strong>{{pokemonService.misPokemons().length}}</strong></p>
 </div>
 
+    @if (pokemonService.nombreEntrenadorActivo(); as entrenadorActivo) {
+        <p>Entrenador activo: <strong>{{entrenadorActivo}}</strong></p>
+    } @else {
+        <p class="sin-datos">Registra un entrenador para consultar su inventario.</p>
+    }
 <div class="grid-pokemons">
     @for(poke of pokemonService.misPokemons(); track poke.id; let idx = $index; let total = $count ) {
         <div appResaltarTarjeta="item-inventario" [ngClass]="{'favorito-activo' : poke.esFavorito}">

@@ -63,12 +63,13 @@
 	
 	@if (ultimoUsuario(); as user) {
     <div class="user-info">
-      <h3>Usuario Registrado</h3>
+      <h3>Entrenador activo</h3>
       <p><strong>ID generado:</strong> {{ user.id }}</p>
       <p><strong>Nombre Completo:</strong> {{ user.nombreCompleto }}</p>
       <p><strong>Documento:</strong> {{ user.documento.tipo }} - {{ user.documento.numero }}</p>
       <p><strong>Fecha de Nacimiento:</strong> {{ user.fechaNacimiento }}</p>
       <p><strong>Correo:</strong> {{ user.correo }}</p>
+      <p>Ya puedes capturar Pokémon. Se guardarán en tu inventario.</p>
     </div>
   }
   </main>

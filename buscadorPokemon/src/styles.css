@@ -1,12 +1,15 @@
 :root {
   /* Paleta: 3-5 colores */
-  --bg: #f2f4f8;          /* fondo neutro */
-  --surface: #ffffff;     /* superficies / cards */
-  --ink: #1b1f2a;         /* texto principal */
-  --muted: #6b7280;       /* texto secundario */
-  --brand: #b91c1c;       /* rojo Pokédex (marca) */
-  --brand-dark: #7f1212;
-  --accent: #f6c945;      /* amarillo acento */
+  --bg: #eef3f7;
+  --surface: #ffffff;
+  --ink: #14202b;
+  --muted: #657482;
+  --brand: #ef5b4d;
+  --brand-dark: #c8403c;
+  --accent: #f7c948;
+  --navy: #142b3a;
+  --line: #dce6ec;
+  --shadow: 0 18px 45px rgba(20, 43, 58, 0.12);
 }
 
 * {
@@ -21,9 +24,9 @@ body {
 }
 
 body {
-  background: var(--bg);
+  background: radial-gradient(circle at 8% 12%, rgba(247, 201, 72, 0.2), transparent 24rem), linear-gradient(145deg, #eef3f7 0%, #f8fafb 52%, #e5edf1 100%);
   color: var(--ink);
-  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -33,5 +36,11 @@ h2,
 h3,
 button,
 .brand {
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }

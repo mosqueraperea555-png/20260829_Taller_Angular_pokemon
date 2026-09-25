@@ -29,12 +29,14 @@ export class PokemonStorageService {
 
   }
 
-  private cargarDesdeStorage() {
-    const Data = localStorage.getItem(this.STORAGE_KEY);
-    
-    if (Data) {
-      this.misPokemons.set(JSON.parse(Data));
+  cargarDesdeStorage() {
+    const clave = this.claveInventario();
+    if (!clave) {
+      this.misPokemons.set([]);
+      return;
     }
+    const Data = localStorage.getItem(clave);
+    this.misPokemons.set(Data ? JSON.parse(Data) : []);
   }
 
   //-1. Obtener datos de la API
@@ -48,9 +50,12 @@ export class PokemonStorageService {
   //-2. Guardar/Crear nuevo Pokemon dentro del el maleto.
 
   guardarPokemon(nuevo: PokemonTarjeta){
+    const clave = this.claveInventario();
+    if (!clave) return false;
     const actualizados= [ ...this.misPokemons(), nuevo ];
     this.misPokemons.set(actualizados);
-    localStorage.setItem(this.STORAGE_KEY,  JSON.stringify(actualizados));
+    localStorage.setItem(clave, JSON.stringify(actualizados));
+    return true;
 
 
   };
@@ -58,6 +63,8 @@ export class PokemonStorageService {
   //.3 Actualizar Pokemon Favorito.
 
   actualizarFavorito(id: number){
+      const clave = this.claveInventario();
+      if (!clave) return;
       const actualizados = this.misPokemons().map(poke => {
         if (poke.id === id){
             return { ...poke, esFavorito: !poke.esFavorito }
@@ -65,18 +72,32 @@ export class PokemonStorageService {
         return poke
       });
       this.misPokemons.set(actualizados);
-      localStorage.setItem(this.STORAGE_KEY,  JSON.stringify(actualizados));
+      localStorage.setItem(clave, JSON.stringify(actualizados));
   };
 
 
   //.4 Eliminar Pokemon del malet
 
   eliminarPokemon(id: number){
+      const clave = this.claveInventario();
+      if (!clave) return;
       const filtrados = this.misPokemons().filter( poke => poke.id !== id );
       this.misPokemons.set(filtrados);
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(filtrados));
+      localStorage.setItem(clave, JSON.stringify(filtrados));
 
 
+  }
+
+  private claveInventario(): string | null {
+    const entrenador = localStorage.getItem('entrenador_activo');
+    if (!entrenador) return null;
+    const { id } = JSON.parse(entrenador) as { id: number };
+    return `${this.STORAGE_KEY}_${id}`;
+  }
+
+  nombreEntrenadorActivo(): string | null {
+    const entrenador = localStorage.getItem('entrenador_activo');
+    return entrenador ? (JSON.parse(entrenador) as { nombreCompleto: string }).nombreCompleto : null;
   }
 
 
