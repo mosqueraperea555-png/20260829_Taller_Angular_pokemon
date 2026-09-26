@@ -17,9 +17,9 @@
             <p>{{poke.type}}</p>
 
             <div class="acciones">
-                <button (click)="pokemonService.actualizarFavorito(poke.id)" [class.btn-fav]=" poke.esFavorito">{{poke.esFavorito ? 'favorito': 'marcar'}}</button>
-                <button class="btn-eliminar" (click)="pokemonService.eliminarPokemon(poke.id)">
-                    Matar
+                <button (click)="pokemonService.actualizarFavorito(poke.id)" [class.btn-fav]=" poke.esFavorito">{{poke.esFavorito ? '⭐favorito': 'favorito'}}</button>
+                <button class="btn-eliminar" (click)="pokemonService.eliminar(poke.id)">
+                    eliminar pokemon 
                 </button>
                 
 

@@ -33,15 +33,15 @@ nav a {
 	padding: 0.55rem 0.85rem;
 	border: 1px solid transparent;
 	border-radius: 0.55rem;
-	color: #d9e6ec;
+	color: #58b8d8;
 	font-size: 0.88rem;
 	text-decoration: none;
 }
 
 nav a.active {
-	border-color: rgba(247, 201, 72, 0.55);
-	background: rgba(255, 255, 255, 0.1);
-	color: white;
+	border-color: rgba(32, 30, 25, 0.55);
+	background: rgba(54, 139, 236, 0.432);
+	color: rgb(69, 206, 240);
 }
 
 main {

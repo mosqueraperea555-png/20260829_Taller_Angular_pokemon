@@ -297,11 +297,11 @@ footer {
 }
 
 .btn-submit {
-  background: linear-gradient(135deg, var(--brand), #f18d4b);
+  background: linear-gradient(135deg, var(--brand), #25baf5);
   box-shadow: 0 8px 20px rgba(239, 91, 77, 0.22);
 }
 
 .user-info {
-  background: #fff8e5;
-  border-color: #f4d780;
+  background: #302405;
+  border-color: #74eaff;
 }
